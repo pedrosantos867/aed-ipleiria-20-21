@@ -1,0 +1,24 @@
+package pt.ipleiria.estg.dei.aed.ordenacao.algoritmos;
+
+import pt.ipleiria.estg.dei.aed.Comparacao;
+import pt.ipleiria.estg.dei.aed.utils.EstatisticaDeComparacoesETrocas;
+
+public class BubbleSort<T> extends AlgoritmoOrdenacao<T> {
+
+    public BubbleSort(Comparacao<T> criterio) {
+        super(criterio);
+    }
+
+    public void ordenar(EstatisticaDeComparacoesETrocas estatistica, T... elementos) {
+        for (int indiceFim = elementos.length - 1; indiceFim > 0; indiceFim--) {
+            for (int i = 1; i <= indiceFim; i++) {
+                estatistica.incrementarComparacoes();
+                if (criterio.comparar(elementos[i], elementos[i - 1]) < 0) {
+                    trocar(elementos, i, i - 1);
+                    estatistica.incrementarTrocas();
+                }
+            }
+        }
+    }
+
+}
